@@ -1,0 +1,32 @@
+diff -r -U1 taglist_46.orig/doc/taglist.txt taglist/doc/taglist.txt
+--- taglist_46.orig/doc/taglist.txt	2013-02-26 20:36:16.000000000 +0800
++++ taglist/doc/taglist.txt	2017-05-03 23:57:21.749387420 +0800
+@@ -233,3 +233,3 @@
+ 
+-To open the selected file in a tab, use the 't' key.  If the file is already
++To open the selected file in a tab, use the 'T' key.  If the file is already
+ present in a tab then the cursor is moved to that tab otherwise the file is
+@@ -540,3 +540,3 @@
+                 keep the cursor in the taglist window itself.
+-  t             Jump to the tag in a new tab. If the file is already
++  T             Jump to the tag in a new tab. If the file is already
+                 opened in a tab, move to that tab.
+diff -r -U1 taglist_46.orig/plugin/taglist.vim taglist/plugin/taglist.vim
+--- taglist_46.orig/plugin/taglist.vim	2013-02-26 19:47:16.000000000 +0800
++++ taglist/plugin/taglist.vim	2017-05-03 23:58:58.487187285 +0800
+@@ -398,3 +398,3 @@
+ let s:tlist_def_c_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;' .
+-                           \ 'v:variable;f:function'
++                           \ 'v:variable;f:function;p:prototype'
+ 
+@@ -402,3 +402,4 @@
+ let s:tlist_def_cpp_settings = 'c++;n:namespace;v:variable;d:macro;t:typedef;' .
+-                             \ 'c:class;g:enum;s:struct;u:union;f:function'
++                             \ 'c:class;g:enum;s:struct;u:union;f:function;' .
++							 \ 'p:prototype'
+ 
+@@ -1635,3 +1636,3 @@
+     if v:version >= 700
+-    nnoremap <buffer> <silent> t
++    nnoremap <buffer> <silent> T
+                 \ :call <SID>Tlist_Window_Jump_To_Tag('checktab')<CR>

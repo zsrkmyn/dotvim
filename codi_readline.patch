@@ -1,0 +1,13 @@
+diff --git a/autoload/codi/load.vim b/autoload/codi/load.vim
+index c7201f3..dee74a7 100644
+--- a/autoload/codi/load.vim
++++ b/autoload/codi/load.vim
+@@ -97,7 +97,7 @@ endfunction
+ let s:codi_default_interpreters = {
+       \ 'python': {
+           \ 'bin': ['env', 'PYTHONSTARTUP=', 'python'],
+-          \ 'prompt': '^\(>>>\|\.\.\.\) ',
++          \ 'prompt': '^\((ins)>>>\|\.\.\.\) ',
+           \ 'rephrase': function('s:rp_py'),
+           \ },
+       \ 'javascript': {

@@ -1,0 +1,27 @@
+[submodule "pack/completion/start/deoplete"]
+	path = pack/completion/start/deoplete
+	url = https://github.com/Shougo/deoplete.nvim
+[submodule "pack/completion/start/LanguageClient"]
+	path = pack/completion/start/LanguageClient
+	url = https://github.com/autozimu/LanguageClient-neovim.git
+[submodule "pack/completion/start/nvim-yarp"]
+	path = pack/completion/start/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp
+[submodule "pack/completion/start/vim-hug-neovim-rpc"]
+	path = pack/completion/start/vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc
+[submodule "pack/misc/opt/codi"]
+	path = pack/misc/opt/codi
+	url = https://github.com/metakirby5/codi.vim
+[submodule "pack/misc/start/auto-pairs"]
+	path = pack/misc/start/auto-pairs
+	url = https://github.com/zsrkmyn/auto-pairs
+[submodule "pack/misc/start/fcitx"]
+	path = pack/misc/start/fcitx
+	url = https://github.com/lilydjwg/fcitx.vim
+[submodule "colors"]
+	path = colors
+	url = https://github.com/zsrkmyn/vimcolor-oct22
+[submodule "pack/misc/start/lightline"]
+	path = pack/misc/start/lightline
+	url = https://github.com/itchyny/lightline.vim
