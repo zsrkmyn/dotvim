@@ -153,28 +153,24 @@ set so=3
 set previewheight=5
 
 au FileType java
-			\ set ts=4 sw=4 et softtabstop=4
+			\ set ts=4 sw=4 sts=4 et
 
 set cursorline
 
-" hightlight RedundantSpace
-hi RedundantSpace ctermbg=red ctermfg=red
-match RedundantSpace /\s\+$/
-
 " html auto close
 au FileType html,xml
-			\ set omnifunc=htmlcomplete#CompleteTags
+			\ setl omnifunc=htmlcomplete#CompleteTags
 			\|inoremap </ </<c-x><c-o><esc>==a
 
 " scheme indent for `if`
 au FileType scheme
-			\ set lispwords-=if
-			\|set ts=4 sw=4 sts=4 et
+			\ setl lispwords-=if
+			\|setl ts=4 sw=4 sts=4 et
 "			\|imap ( ()<left>
 
 " python indent
 au FileType python
-			\ set ts=2 sw=2 sts=2 et
+			\ setl ts=2 sw=2 sts=2 et cuc
 
 " for nvim
 if has('nvim')
@@ -320,10 +316,12 @@ let g:riv_auto_format_table = 0
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['ccls', '--log-file=/tmp/cq.log'],
     \ 'c': ['ccls', '--log-file=/tmp/cq.log'],
+	\ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
     \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = expand('~/.vim/ccls_settings.json')
+let g:LanguageClient_changeThrottle = 3
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
@@ -335,6 +333,10 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
+au VimEnter call deoplete#custom#option('sources', {
+			\ '_': ['buffer'],
+			\ 'cpp': ['buffer', 'LanguageClient-neovim'],
+			\})
 
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
@@ -342,3 +344,9 @@ set completeopt=longest,menu
 
 "-- codi
 let g:codi#log = '/tmp/codilog'
+
+" ------------------------------
+" hightlight RedundantSpace
+hi RedundantSpace ctermbg=red ctermfg=red
+match RedundantSpace /\s\+$/
+
