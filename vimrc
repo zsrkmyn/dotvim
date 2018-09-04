@@ -99,36 +99,24 @@ au FileType c set cino=:0,g0,(0
 colo oct22
 
 " window opearte
-nno <space> w
-no wd <C-w>h
-no wh <C-w>j
-no wt <C-w>k
-no wn <C-w>l
-no wD <C-w>H
-no wH <C-w>J
-no wT <C-w>K
-no wN <C-w>L
-no wv <C-w>v
-no ws <C-w>s
-no wq <C-w>q
-no w- <C-w>-
-no w= <C-w>+
-no w, <C-w><
-no w. <C-w>>
+no <C-w><C-h> <C-w>h
+no <C-w><C-j> <C-w>j
+no <C-w><C-k> <C-w>k
+no <C-w><C-l> <C-w>l
+no <C-w><C-H> <C-w>H
+no <C-w><C-J> <C-w>J
+no <C-w><C-K> <C-w>K
+no <C-w><C-L> <C-w>L
+no <C-w><C-v> <C-w>v
+no <C-w><C-s> <C-w>s
+no <C-w><C-q> <C-w>q
+no <C-w><C--> <C-w>-
+no <C-w><C-=> <C-w>+
+no <C-w><C-,> <C-w><
+no <C-w><C-.> <C-w>>
 
 " Run script
 no -r	:w\|!./%<cr>
-
-" Dvorak hack
-no d h
-no h j
-no t k
-no n l
-no S :
-no j d
-no l n
-no L N
-no k t
 
 " Reselect visual block after
 vnoremap < <gv
@@ -198,22 +186,6 @@ augroup netrw_dvorak_fix
 	au!
 	au FileType netrw call Fix_netrw_keymaps()
 augroup END
-
-func! Fix_netrw_keymaps()
-	" dirty hack for mapping <c-t> to origin t
-	" to open file in new tab
-	if !exists("g:my_netrw_t_map")
-		let g:my_netrw_t_map = maparg('t', 'n')
-	endif
-	exe "nnoremap <buffer> <c-t> ".g:my_netrw_t_map
-
-	nnoremap <buffer> d h
-	nnoremap <buffer> h gj
-	nnoremap <buffer> t gk
-	nnoremap <buffer> n l
-	nnoremap <buffer> e d
-	nnoremap <buffer> l n
-endf
 
 func! s:Toggle_netrw()
 	let curwin = winnr()
@@ -336,9 +308,6 @@ au VimEnter call deoplete#custom#option('sources', {
 			\ '_': ['buffer'],
 			\ 'cpp': ['buffer', 'LanguageClient-neovim'],
 			\})
-
-"-- fcitx
-let g:fcitx_5 = 1
 
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
