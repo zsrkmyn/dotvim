@@ -307,7 +307,6 @@ endf
 no mm :call SearchWord()<cr>
 
 "-- ag --
-"command Agg exe 'Ag -Q ' . expand('<cword>')
 
 "-- riv --
 let g:riv_auto_format_table = 0
@@ -338,6 +337,9 @@ au VimEnter call deoplete#custom#option('sources', {
 			\ 'cpp': ['buffer', 'LanguageClient-neovim'],
 			\})
 
+"-- fcitx
+let g:fcitx_5 = 1
+
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 set completeopt=longest,menu
@@ -345,7 +347,12 @@ set completeopt=longest,menu
 "-- codi
 let g:codi#log = '/tmp/codilog'
 
-" ------------------------------
+"-- vim-grammarous
+"let g:grammarous#languagetool_cmd = 'languagetool'
+hi SpellBad None
+hi link SpellBad ErrorMsg
+
+" --
 " hightlight RedundantSpace
 hi RedundantSpace ctermbg=red ctermfg=red
 match RedundantSpace /\s\+$/
