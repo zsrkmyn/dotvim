@@ -296,11 +296,17 @@ let g:LanguageClient_changeThrottle = 3
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
-nnoremap <silent> gh :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nn <silent> gh :call LanguageClient_textDocument_hover()<CR>
+nn <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nn <silent> gr :call LanguageClient_textDocument_references()<CR>
+nn <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
+nn <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+au FileType c,cpp
+	\ nn <silent> <C-j> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
+	\|nn <silent> <C-k> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
+	\|nn <silent> <C-h> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
+	\|nn <silent> <C-l> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
