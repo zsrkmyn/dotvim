@@ -122,6 +122,13 @@ no -r	:w\|!./%<cr>
 vnoremap < <gv
 vnoremap > >gv
 
+" Prompt on :tabe or :e
+set wildmenu
+
+" Quick move in long line
+nn <expr> j v:count ? 'j' : 'gj'
+nn <expr> k v:count ? 'k' : 'gk'
+
 " Misc
 au QuickFixCmdPost [^l]* nested cwindow
 au QuickFixCmdPost    l* nested lwindow
