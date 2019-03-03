@@ -124,6 +124,7 @@ vnoremap > >gv
 
 " Prompt on :tabe or :e
 set wildmenu
+set wim=longest:full
 
 " Quick move in long line
 nn <expr> j v:count ? 'j' : 'gj'
@@ -173,27 +174,7 @@ if has('nvim')
 end
 
 "----- For Plugins ----
-"-- vimshell --
-"augroup vimshell_keymap_fix
-"	au!
-"	au FileType vimshell,int-* call Fix_vimshell_keymaps()
-"augroup END
-"func! Fix_vimshell_keymaps()
-"	nun <buffer> dd
-"	iu <buffer> <C-l>
-"	im <buffer> <C-l> <Plug>(vimshell_clear)
-"	if &ft == 'int-scheme'
-"		iu <buffer> <Tab>
-"	endif
-"endf
-"nmap sc :VimShellSendString<cr>
-
 "-- netrw --
-augroup netrw_dvorak_fix
-	au!
-	au FileType netrw call Fix_netrw_keymaps()
-augroup END
-
 func! s:Toggle_netrw()
 	let curwin = winnr()
 	if exists("t:my_netrw_bufnr")
@@ -224,43 +205,6 @@ let g:lightline.colorscheme = 'wombat'
 "-- emmet --
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-
-"-- YCM --
-"if has('nvim')
-"	let g:loaded_youcompleteme = 0
-"endif
-"au FileType cpp,c
-"			\ let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
-"let g:ycm_goto_buffer_command = 'new-or-existing-tab'
-"let g:ycm_complete_in_comments = 1
-"let g:ycm_confirm_extra_conf = 0
-"let g:ycm_add_preview_to_completeopt = 1
-"let g:ycm_seed_identifiers_with_syntax = 1
-"let g:ycm_collect_identifiers_from_tags_files = 1
-""let g:ycm_server_keep_logfiles = 1
-"let g:ycm_always_populate_location_list = 1
-"let g:ycm_server_log_level = 'debug'
-"let g:ycm_min_num_of_chars_for_completion = 1
-"let g:ycm_key_invoke_completion = '<S-Enter>'
-"let g:ycm_semantic_triggers =  {
-"			\ 'c' : ['->', '.'],
-"			\ 'objc' : ['->', '.'],
-"			\ 'ocaml' : ['.', '#'],
-"			\ 'cpp,objcpp' : ['->', '.', '::'],
-"			\ 'perl' : ['->'],
-"			\ 'php' : ['->', '::'],
-"			\ 'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-"			\ 'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-"			\ 'ruby' : ['.', '::'],
-"			\ 'lua' : ['.', ':'],
-"			\ 'erlang' : [':'],
-"			\ 'vhdl' : ['a', '.']
-"			\ }
-"let g:ycm_filetype_blacklist = {
-"			\ 'html': 1,
-"			\ 'text': 1,
-"			\ 'mail': 1,
-"			\ }
 
 "-- A --
 nnoremap -a :A<cr>
@@ -317,10 +261,6 @@ au FileType c,cpp
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
-au VimEnter call deoplete#custom#option('sources', {
-			\ '_': ['buffer'],
-			\ 'cpp': ['buffer', 'LanguageClient-neovim'],
-			\})
 
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
