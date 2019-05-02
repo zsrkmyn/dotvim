@@ -103,10 +103,6 @@ no <C-w><C-h> <C-w>h
 no <C-w><C-j> <C-w>j
 no <C-w><C-k> <C-w>k
 no <C-w><C-l> <C-w>l
-no <C-w><C-H> <C-w>H
-no <C-w><C-J> <C-w>J
-no <C-w><C-K> <C-w>K
-no <C-w><C-L> <C-w>L
 no <C-w><C-v> <C-w>v
 no <C-w><C-s> <C-w>s
 no <C-w><C-q> <C-w>q
