@@ -1,0 +1,1 @@
+../nerdtree-git-plugin/nerdtree_plugin/git_status.vim

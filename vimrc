@@ -93,7 +93,7 @@ if !exists(":DiffOrig")
 endif
 
 " Set cindent opintions. See :help cinoptions-values
-au FileType c set cino=:0,g0,(0
+au FileType c,cpp set cino=:0,g0,(0
 
 " color
 colo oct22
@@ -171,36 +171,27 @@ au FileType python
 " for nvim
 if has('nvim')
 	set rtp^=/usr/share/vim/vimfiles
+	set guicursor=
 end
 
 "----- For Plugins ----
-"-- netrw --
-func! s:Toggle_netrw()
-	let curwin = winnr()
-	if exists("t:my_netrw_bufnr")
-		let exwin = bufwinnr(t:my_netrw_bufnr)
-		exe exwin."wincmd w"
-		close
-		if exwin < curwin
-			let curwin -= 1
-		endif
-		unlet t:my_netrw_bufnr
-		exe curwin."wincmd w"
-	else
-		exe "Sexplore"
-		if curwin >= winnr()
-			let curwin += 1
-		endif
-		let g:netrw_chgwin = curwin
-		let t:my_netrw_bufnr = bufnr('%')
-	endif
-endf
-no <silent> <F8> :call <SID>Toggle_netrw()<cr>
-
 "-- lightline --
 set laststatus=2
-let g:lightline = {}
-let g:lightline.colorscheme = 'wombat'
+let g:lightline = {
+	\ 'colorscheme': 'wombat',
+	\ 'component_function': {
+	\	'filename': 'LightlineFilename',
+	\ }
+	\ }
+
+function! LightlineFilename()
+	let root = fnamemodify(get(b:, 'git_dir'), ':h')
+	let path = expand('%:p')
+	if path[:len(root)-1] ==# root
+		return path[len(root)+1:]
+	endif
+	return path
+endfunction
 
 "-- emmet --
 let g:user_emmet_install_global = 0
@@ -241,9 +232,20 @@ let g:LanguageClient_serverCommands = {
 	\ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
     \ }
 
+" disable diagnosis while typing and do it only when leaving Insert Mode
+"au VimEnter * if exists('*LanguageClient#handleTextChanged')
+"		\|aug languageClient
+"		\|	exe "au! TextChangedP"
+"		\|	exe "au! TextChangedI"
+"		\|	exe "au InsertLeave * call LanguageClient#handleTextChanged()"
+"		\|aug END
+"	\|endif
+
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = expand('~/.vim/ccls_settings.json')
-let g:LanguageClient_changeThrottle = 3
+let g:LanguageClient_changeThrottle = v:null
+"let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
+"let g:LanguageClient_loggingLevel = 'DEBUG'
 set completefunc=LanguageClient#complete
 set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
@@ -261,6 +263,9 @@ au FileType c,cpp
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
+"au VimEnter * call deoplete#custom#option('sources', {
+"	\ 'cpp': ['LanguageClient'],
+"	\})
 
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
@@ -273,6 +278,26 @@ let g:codi#log = '/tmp/codilog'
 "let g:grammarous#languagetool_cmd = 'languagetool'
 hi SpellBad None
 hi link SpellBad ErrorMsg
+
+"-- vimtex
+let g:vimtex_complete_enabled = 1
+let g:vimtex_compiler_latexmk = {
+	\ 'backend': 'jobs',
+	\ 'callback': 1,
+	\ 'continuous': 1,
+	\ 'options': ['-synctex=1', '-interaction=nonstopmode']
+	\}
+
+"-- echodoc
+set noshowmode "avoid '--INSERT--' overriding it
+let g:echodoc#enable_at_startup = 1
+
+"-- NERDTree
+autocmd vimenter * NERDTree
+no <silent> <F8> :NERDTreeToggle<cr>
+let NERDTreeShowHidden=1
+"let g:NERDTreeDirArrowExpandable = '>'
+"let g:NERDTreeDirArrowCollapsible = 'v'
 
 " --
 " hightlight RedundantSpace
