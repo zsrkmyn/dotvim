@@ -1,30 +1,40 @@
 [submodule "pack/completion/start/deoplete"]
 	path = pack/completion/start/deoplete
 	url = https://github.com/Shougo/deoplete.nvim
+	ignore = untracked
 [submodule "pack/completion/start/LanguageClient"]
 	path = pack/completion/start/LanguageClient
 	url = https://github.com/autozimu/LanguageClient-neovim.git
+	ignore = untracked
 [submodule "pack/misc/start/auto-pairs"]
 	path = pack/misc/start/auto-pairs
 	url = https://github.com/zsrkmyn/auto-pairs
+	ignore = untracked
 [submodule "pack/misc/start/fcitx"]
 	path = pack/misc/start/fcitx
 	url = https://github.com/lilydjwg/fcitx.vim
+	ignore = untracked
 [submodule "colors"]
 	path = colors
 	url = https://github.com/zsrkmyn/vimcolor-oct22
+	ignore = untracked
 [submodule "pack/misc/start/lightline"]
 	path = pack/misc/start/lightline
 	url = https://github.com/itchyny/lightline.vim
+	ignore = untracked
 [submodule "pack/grammer/start/vim-grammarous"]
 	path = pack/grammer/start/vim-grammarous
 	url = https://github.com/rhysd/vim-grammarous
+	ignore = untracked
 [submodule "pack/misc/start/nerdtree"]
 	path = pack/misc/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+	ignore = untracked
 [submodule "pack/completion/start/echodoc"]
 	path = pack/completion/start/echodoc
 	url = https://github.com/Shougo/echodoc.vim
+	ignore = untracked
 [submodule "nerdtree-git-plugin"]
 	path = nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+	ignore = untracked
