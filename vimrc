@@ -289,7 +289,7 @@ set noshowmode "avoid '--INSERT--' overriding it
 let g:echodoc#enable_at_startup = 1
 
 "-- NERDTree
-autocmd vimenter * NERDTree
+autocmd vimenter * NERDTree | wincmd w
 no <silent> <F8> :NERDTreeToggle<cr>
 let NERDTreeShowHidden=1
 "let g:NERDTreeDirArrowExpandable = '>'
