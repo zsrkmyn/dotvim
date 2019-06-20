@@ -147,6 +147,9 @@ set previewheight=5
 au FileType java
 			\ set ts=4 sw=4 sts=4 et
 
+au FileType c,cpp
+			\ set et
+
 set cursorline
 
 " html auto close
@@ -297,6 +300,7 @@ let NERDTreeShowHidden=1
 
 " --
 " hightlight RedundantSpace
-hi RedundantSpace ctermbg=red ctermfg=red
-match RedundantSpace /\s\+$/
+au BufEnter *
+	\ hi RedundantSpace ctermbg=red ctermfg=red
+	\|match RedundantSpace /\s\+$/
 
