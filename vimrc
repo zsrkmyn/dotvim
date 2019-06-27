@@ -151,6 +151,11 @@ au FileType c,cpp
 			\ set et
 
 set cursorline
+set relativenumber
+
+" no jump after pressing *
+nn * m`:keepjumps norm! *``<cr>
+
 
 " html auto close
 au FileType html,xml
