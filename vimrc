@@ -264,6 +264,13 @@ au FileType c,cpp
 	\|nn <silent> <C-k> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
 	\|nn <silent> <C-h> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
 	\|nn <silent> <C-l> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+	\|let b:lc_pword = ""
+	\|au CursorMoved <buffer=abuf>
+		\ let b:lc_cword = expand("<cword>")
+		\|if b:lc_cword != b:lc_pword
+		\|	sil call LanguageClient#textDocument_documentHighlight()
+		\|  let b:lc_pword = b:lc_cword
+		\|endif
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
@@ -274,9 +281,6 @@ let g:deoplete#enable_at_startup = 1
 "-- misc
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 set completeopt=longest,menu
-
-"-- codi
-let g:codi#log = '/tmp/codilog'
 
 "-- vim-grammarous
 "let g:grammarous#languagetool_cmd = 'languagetool'
@@ -297,7 +301,7 @@ set noshowmode "avoid '--INSERT--' overriding it
 let g:echodoc#enable_at_startup = 1
 
 "-- NERDTree
-autocmd vimenter * NERDTree | wincmd w
+"autocmd vimenter * NERDTree | wincmd w
 no <silent> <F8> :NERDTreeToggle<cr>
 let NERDTreeShowHidden=1
 "let g:NERDTreeDirArrowExpandable = '>'
