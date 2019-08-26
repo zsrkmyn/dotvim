@@ -92,6 +92,10 @@ if !exists(":DiffOrig")
 				\ | wincmd p | diffthis
 endif
 
+if exists("&mle")
+	set mle
+endif
+
 " Set cindent opintions. See :help cinoptions-values
 au FileType c,cpp set cino=:0,g0,(0
 
@@ -304,6 +308,8 @@ let g:echodoc#enable_at_startup = 1
 "autocmd vimenter * NERDTree | wincmd w
 no <silent> <F8> :NERDTreeToggle<cr>
 let NERDTreeShowHidden=1
+let g:NERDTreeMapPreview = 'p'
+let g:NERDTreeMapJumpParent = 'P'
 "let g:NERDTreeDirArrowExpandable = '>'
 "let g:NERDTreeDirArrowCollapsible = 'v'
 
@@ -313,3 +319,4 @@ au BufEnter *
 	\ hi RedundantSpace ctermbg=red ctermfg=red
 	\|match RedundantSpace /\s\+$/
 
+" vim:set noet ts=4 sts=4 sw=4:
