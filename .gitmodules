@@ -38,3 +38,6 @@
 	path = nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
 	ignore = untracked
+[submodule "pack/completion/start/vim-lsp-cxx-highlight"]
+	path = pack/completion/start/vim-lsp-cxx-highlight
+	url = /home/stephen/.vim/pack/completion/start/vim-lsp-cxx-highlight

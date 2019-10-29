@@ -233,10 +233,23 @@ no mm :call SearchWord()<cr>
 "-- riv --
 let g:riv_auto_format_table = 0
 
+"-- vim-lsp-cxx-highlight
+let g:lsp_cxx_hl_use_text_props = 1
+hi default LspCxxHlGroupEnumConstant ctermfg=176
+hi default LspCxxHlGroupNamespace ctermfg=136
+hi default LspCxxHlGroupMemberVariable ctermfg=81
+
 "-- LanguageClient --
+let s:ccls_settings = {
+	\ 'highlight': { 'lsRanges' : v:true  },
+	\ }
+
+let s:ccls_command = ['ccls',
+	\ '-init=' . json_encode(s:ccls_settings), '--log-file=/tmp/ccls.sr.log']
+
 let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['ccls', '--log-file=/tmp/cq.log'],
-    \ 'c': ['ccls', '--log-file=/tmp/cq.log'],
+    \ 'cpp': s:ccls_command,
+    \ 'c': s:ccls_command,
 	\ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
     \ }
 
