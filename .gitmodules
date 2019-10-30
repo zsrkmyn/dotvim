@@ -40,7 +40,7 @@
 	ignore = untracked
 [submodule "pack/completion/start/vim-lsp-cxx-highlight"]
 	path = pack/completion/start/vim-lsp-cxx-highlight
-	url = /home/stephen/.vim/pack/completion/start/vim-lsp-cxx-highlight
+	url = https://github.com/jackguo380/vim-lsp-cxx-highlight
 [submodule "pack/misc/start/rainbow"]
 	path = pack/misc/start/rainbow
-	url = /nfs/site/home/senranzh/.vim/pack/misc/start/rainbow
+	url = https://github.com/luochen1990/rainbow
