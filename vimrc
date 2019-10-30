@@ -326,6 +326,12 @@ let g:NERDTreeMapJumpParent = 'P'
 "let g:NERDTreeDirArrowExpandable = '>'
 "let g:NERDTreeDirArrowCollapsible = 'v'
 
+"-- rainbow
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+	\ 'ctermfgs': ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta'],
+	\ }
+
 " --
 " hightlight RedundantSpace
 au BufEnter *
