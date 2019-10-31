@@ -1,0 +1,1 @@
+../nerdtree_plugin.dir/nerdtree-buffer-ops/nerdtree_plugin/highlight_open_buffers.vim

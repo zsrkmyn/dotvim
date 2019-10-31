@@ -1,1 +1,1 @@
-../nerdtree-git-plugin/nerdtree_plugin/git_status.vim
+../nerdtree_plugin.dir/nerdtree-git-plugin/nerdtree_plugin/git_status.vim
