@@ -320,11 +320,11 @@ let g:echodoc#enable_at_startup = 1
 "-- NERDTree
 "autocmd vimenter * NERDTree | wincmd w
 no <silent> <F8> :NERDTreeToggle<cr>
-let NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=1
 let g:NERDTreeMapPreview = 'p'
 let g:NERDTreeMapJumpParent = 'P'
-"let g:NERDTreeDirArrowExpandable = '>'
-"let g:NERDTreeDirArrowCollapsible = 'v'
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeShowLineNumbers = 1
 
 "-- rainbow
 let g:rainbow_active = 1
