@@ -102,7 +102,7 @@ au FileType c,cpp set cino=:0,g0,(0
 " color
 colo oct22
 
-" window opearte
+" window manipulation
 no <C-w><C-h> <C-w>h
 no <C-w><C-j> <C-w>j
 no <C-w><C-k> <C-w>k
@@ -114,6 +114,18 @@ no <C-w><C--> <C-w>-
 no <C-w><C-=> <C-w>+
 no <C-w><C-,> <C-w><
 no <C-w><C-.> <C-w>>
+
+" Move cursor in insert mode
+ino <C-h> <C-o>h
+ino <C-j> <C-o>j
+ino <C-k> <C-o>k
+ino <C-l> <C-o>l
+ino <C-f> <C-o>f
+ino <C-S-f> <C-o>F
+" As we cannot map <C-<num>>, we use Emacs-like motion
+ino <M-m> <C-o>^
+ino <C-a> <C-o>0
+ino <C-e> <C-o>$
 
 " Run script
 no -r	:w\|!./%<cr>
