@@ -169,6 +169,8 @@ au FileType c,cpp
 set cursorline
 set relativenumber
 
+let g:python3_host_prog = "/usr/bin/python3"
+
 " no jump after pressing *
 nn * m`:keepjumps norm! *``<cr>
 
