@@ -295,6 +295,15 @@ au FileType c,cpp
 	\|nn <silent> <C-k> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
 	\|nn <silent> <C-h> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
 	\|nn <silent> <C-l> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+	\|nn <silent> gxb :call LanguageClient#findLocations({'method':'$ccls/inheritance'})<cr>
+	\|nn <silent> gxB :call LanguageClient#findLocations({'method':'$ccls/inheritance','levels':3})<cr>
+	\|nn <silent> gxd :call LanguageClient#findLocations({'method':'$ccls/inheritance','derived':v:true})<cr>
+	\|nn <silent> gxD :call LanguageClient#findLocations({'method':'$ccls/inheritance','derived':v:true,'levels':3})<cr>
+	\|nn <silent> gxc :call LanguageClient#findLocations({'method':'$ccls/call'})<cr>
+	\|nn <silent> gxC :call LanguageClient#findLocations({'method':'$ccls/call','callee':v:true})<cr>
+	\|nn <silent> gxs :call LanguageClient#findLocations({'method':'$ccls/member','kind':2})<cr>
+	\|nn <silent> gxf :call LanguageClient#findLocations({'method':'$ccls/member','kind':3})<cr>
+	\|nn <silent> gxm :call LanguageClient#findLocations({'method':'$ccls/member'})<cr>
 	\|let b:lc_pword = ""
 	\|au CursorMoved <buffer=abuf>
 		\ let b:lc_cword = expand("<cword>")

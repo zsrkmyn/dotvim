@@ -37,12 +37,20 @@
 [submodule "pack/completion/start/vim-lsp-cxx-highlight"]
 	path = pack/completion/start/vim-lsp-cxx-highlight
 	url = https://github.com/jackguo380/vim-lsp-cxx-highlight
+	ignore = untracked
 [submodule "pack/misc/start/rainbow"]
 	path = pack/misc/start/rainbow
 	url = https://github.com/luochen1990/rainbow
+	ignore = untracked
 [submodule "nerdtree_plugin.dir/nerdtree-buffer-ops"]
 	path = nerdtree_plugin.dir/nerdtree-buffer-ops
 	url = https://github.com/PhilRunninger/nerdtree-buffer-ops
+	ignore = untracked
 [submodule "nerdtree_plugin.dir/nerdtree-git-plugin"]
 	path = nerdtree_plugin.dir/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+	ignore = untracked
+[submodule "pack/completion/start/vim-ccls"]
+	path = pack/completion/start/vim-ccls
+	url = https://github.com/m-pilia/vim-ccls
+	ignore = untracked
