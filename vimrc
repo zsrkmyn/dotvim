@@ -196,6 +196,12 @@ if has('nvim')
 	set guicursor=
 end
 
+" extra local config
+let s:extra_conf = expand('<sfile>:p:h') . '/extra_conf.vim'
+if filereadable(s:extra_conf)
+	exe 'source ' . s:extra_conf
+end
+
 "----- For Plugins ----
 "-- lightline --
 set laststatus=2
@@ -259,7 +265,7 @@ let s:ccls_settings = {
 	\ }
 
 let s:ccls_command = ['ccls',
-	\ '-init=' . json_encode(s:ccls_settings), '--log-file=/tmp/ccls.sr.log']
+	\ '--init=' . json_encode(s:ccls_settings), '--log-file=/tmp/ccls.sr.log']
 
 let g:LanguageClient_serverCommands = {
     \ 'cpp': s:ccls_command,
@@ -354,6 +360,9 @@ let g:rainbow_active = 1
 let g:rainbow_conf = {
 	\ 'ctermfgs': ['darkblue', 'darkyellow', 'darkcyan', 'darkmagenta'],
 	\ }
+
+"-- diffchar.vim
+let g:DiffUnit = 'Word3'
 
 " --
 " hightlight RedundantSpace

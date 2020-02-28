@@ -54,3 +54,6 @@
 	path = pack/completion/start/vim-ccls
 	url = https://github.com/m-pilia/vim-ccls
 	ignore = untracked
+[submodule "pack/misc/start/diffchar.vim"]
+	path = pack/misc/start/diffchar.vim
+	url = https://github.com/rickhowe/diffchar.vim
