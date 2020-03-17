@@ -10,3 +10,5 @@ let b:did_ftplugin = 1
 setlocal softtabstop=2 shiftwidth=2
 setlocal expandtab
 setlocal comments+=:;
+
+set isk=%,@,.,_,48-57
