@@ -97,7 +97,7 @@ if exists("&mle")
 endif
 
 " Set cindent opintions. See :help cinoptions-values
-au FileType c,cpp set cino=:0,g0,(0
+au FileType c,cpp set cino=:0,g0,(0,W2s,l1,N-s,E-s
 
 " color
 colo oct22
@@ -119,7 +119,7 @@ no <C-w><C-.> <C-w>>
 ino <C-h> <C-o>h
 ino <C-j> <C-o>j
 ino <C-k> <C-o>k
-ino <C-l> <C-o>l
+ino <C-l> <C-o>a
 ino <C-f> <C-o>f
 ino <C-S-f> <C-o>F
 " As we cannot map <C-<num>>, we use Emacs-like motion
@@ -320,6 +320,10 @@ au FileType c,cpp
 
 "-- deoplete
 let g:deoplete#enable_at_startup = 1
+au VimEnter *
+	\ call deoplete#custom#source('LanguageClient', {
+		\ 'max_abbr_width': 0,
+		\ 'max_menu_width': 0 })
 "au VimEnter * call deoplete#custom#option('sources', {
 "	\ 'cpp': ['LanguageClient'],
 "	\})
