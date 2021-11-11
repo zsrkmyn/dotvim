@@ -1,5 +1,5 @@
 " Vim filetype plugin file
-" Language: LLVM Assembly
+" Language: LLVM Machine IR
 " Maintainer: The LLVM team, http://llvm.org/
 
 if exists("b:did_ftplugin")
@@ -11,4 +11,3 @@ setlocal softtabstop=2 shiftwidth=2
 setlocal expandtab
 setlocal comments+=:;
 
-setlocal isk=%,@,.,_,48-57
