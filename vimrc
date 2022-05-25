@@ -164,7 +164,7 @@ au FileType java
 			\ set ts=4 sw=4 sts=4 et
 
 au FileType c,cpp
-			\ set et
+			\ set ts=2 sw=2 sts=2 et
 
 set cursorline
 set relativenumber
@@ -201,6 +201,10 @@ let s:extra_conf = expand('<sfile>:p:h') . '/extra_conf.vim'
 if filereadable(s:extra_conf)
 	exe 'source ' . s:extra_conf
 end
+
+" clang-format
+au FileType c,cpp
+			\ vn <C-f> :py3f ~/.bin/clang-format.py<cr>
 
 "----- For Plugins ----
 "-- lightline --
@@ -285,6 +289,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = expand('~/.vim/ccls_settings.json')
 let g:LanguageClient_changeThrottle = v:null
+let g:LanguageClient_useVirtualText = 'Diagnostics' " Disable CodeLens
 "let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 "let g:LanguageClient_loggingLevel = 'DEBUG'
 set completefunc=LanguageClient#complete
@@ -310,6 +315,7 @@ au FileType c,cpp
 	\|nn <silent> gxs :call LanguageClient#findLocations({'method':'$ccls/member','kind':2})<cr>
 	\|nn <silent> gxf :call LanguageClient#findLocations({'method':'$ccls/member','kind':3})<cr>
 	\|nn <silent> gxm :call LanguageClient#findLocations({'method':'$ccls/member'})<cr>
+    \|nn <silent> gxe :call LanguageClient#explainErrorAtPoint()<cr>
 	\|let b:lc_pword = ""
 	\|au CursorMoved <buffer=abuf>
 		\ let b:lc_cword = expand("<cword>")
