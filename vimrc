@@ -264,6 +264,18 @@ hi default LspCxxHlGroupNamespace ctermfg=136
 hi default LspCxxHlGroupMemberVariable ctermfg=81
 
 "-- LanguageClient --
+func s:FindTblGenDB()
+	let dir = getcwd()
+	while dir !=# '/'
+		let db = dir . '/tablegen_compile_commands.yml'
+		if filereadable(db)
+			return db
+		endif
+		let dir = fnamemodify(dir, ':h:p')
+	endwhile
+	return ''
+endfunc
+
 let s:ccls_settings = {
 	\ 'highlight': { 'lsRanges' : v:true  },
 	\ }
@@ -274,6 +286,7 @@ let s:ccls_command = ['ccls',
 let g:LanguageClient_serverCommands = {
     \ 'cpp': s:ccls_command,
     \ 'c': s:ccls_command,
+	\ 'tablegen': ['tblgen-lsp-server', '--tablegen-compilation-database=' . s:FindTblGenDB()],
 	\ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
     \ }
 
