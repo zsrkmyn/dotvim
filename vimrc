@@ -204,7 +204,7 @@ end
 
 " clang-format
 au FileType c,cpp
-			\ vn <C-f> :py3f ~/.bin/clang-format.py<cr>
+			\ vn = :py3f ~/.bin/clang-format.py<cr>
 
 "----- For Plugins ----
 "-- lightline --
