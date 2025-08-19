@@ -204,7 +204,7 @@ end
 
 " clang-format
 au FileType c,cpp
-			\ vn = :py3f ~/.bin/clang-format.py<cr>
+			\ vn = :py3f ~/.local/bin/clang-format.py<cr>
 
 "----- For Plugins ----
 "-- lightline --
@@ -257,98 +257,7 @@ no mm :call SearchWord()<cr>
 "-- riv --
 let g:riv_auto_format_table = 0
 
-"-- vim-lsp-cxx-highlight
-let g:lsp_cxx_hl_use_text_props = 1
-hi default LspCxxHlGroupEnumConstant ctermfg=176
-hi default LspCxxHlGroupNamespace ctermfg=136
-hi default LspCxxHlGroupMemberVariable ctermfg=81
-
-"-- LanguageClient --
-func s:FindTblGenDB()
-	let dir = getcwd()
-	while dir !=# '/'
-		let db = dir . '/tablegen_compile_commands.yml'
-		if filereadable(db)
-			return db
-		endif
-		let dir = fnamemodify(dir, ':h:p')
-	endwhile
-	return ''
-endfunc
-
-let s:ccls_settings = {
-	\ 'highlight': { 'lsRanges' : v:true  },
-	\ }
-
-let s:ccls_command = ['ccls',
-	\ '--init=' . json_encode(s:ccls_settings), '--log-file=/tmp/ccls.sr.log']
-
-let g:LanguageClient_serverCommands = {
-    \ 'cpp': s:ccls_command,
-    \ 'c': s:ccls_command,
-	\ 'tablegen': ['tblgen-lsp-server', '--tablegen-compilation-database=' . s:FindTblGenDB()],
-	\ 'python': ['pyls', '--log-file=/tmp/pyls.log'],
-    \ }
-
-" disable diagnosis while typing and do it only when leaving Insert Mode
-"au VimEnter * if exists('*LanguageClient#handleTextChanged')
-"		\|aug languageClient
-"		\|	exe "au! TextChangedP"
-"		\|	exe "au! TextChangedI"
-"		\|	exe "au InsertLeave * call LanguageClient#handleTextChanged()"
-"		\|aug END
-"	\|endif
-
-let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
-let g:LanguageClient_settingsPath = expand('~/.vim/ccls_settings.json')
-let g:LanguageClient_changeThrottle = v:null
-let g:LanguageClient_useVirtualText = 'Diagnostics' " Disable CodeLens
-"let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
-"let g:LanguageClient_loggingLevel = 'DEBUG'
-set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-nn <silent> gh :call LanguageClient_textDocument_hover()<CR>
-nn <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nn <silent> gr :call LanguageClient_textDocument_references()<CR>
-nn <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
-nn <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-
-au FileType c,cpp
-	\ nn <silent> <C-j> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
-	\|nn <silent> <C-k> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
-	\|nn <silent> <C-h> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
-	\|nn <silent> <C-l> :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
-	\|nn <silent> gxb :call LanguageClient#findLocations({'method':'$ccls/inheritance'})<cr>
-	\|nn <silent> gxB :call LanguageClient#findLocations({'method':'$ccls/inheritance','levels':3})<cr>
-	\|nn <silent> gxd :call LanguageClient#findLocations({'method':'$ccls/inheritance','derived':v:true})<cr>
-	\|nn <silent> gxD :call LanguageClient#findLocations({'method':'$ccls/inheritance','derived':v:true,'levels':3})<cr>
-	\|nn <silent> gxc :call LanguageClient#findLocations({'method':'$ccls/call'})<cr>
-	\|nn <silent> gxC :call LanguageClient#findLocations({'method':'$ccls/call','callee':v:true})<cr>
-	\|nn <silent> gxs :call LanguageClient#findLocations({'method':'$ccls/member','kind':2})<cr>
-	\|nn <silent> gxf :call LanguageClient#findLocations({'method':'$ccls/member','kind':3})<cr>
-	\|nn <silent> gxm :call LanguageClient#findLocations({'method':'$ccls/member'})<cr>
-    \|nn <silent> gxe :call LanguageClient#explainErrorAtPoint()<cr>
-	\|let b:lc_pword = ""
-	\|au CursorMoved <buffer=abuf>
-		\ let b:lc_cword = expand("<cword>")
-		\|if b:lc_cword != b:lc_pword
-		\|	sil call LanguageClient#textDocument_documentHighlight()
-		\|  let b:lc_pword = b:lc_cword
-		\|endif
-
-"-- deoplete
-let g:deoplete#enable_at_startup = 1
-au VimEnter *
-	\ call deoplete#custom#source('LanguageClient', {
-		\ 'max_abbr_width': 0,
-		\ 'max_menu_width': 0 })
-"au VimEnter * call deoplete#custom#option('sources', {
-"	\ 'cpp': ['LanguageClient'],
-"	\})
-
 "-- misc
-set cscopequickfix=s-,c-,d-,i-,t-,e-
 set completeopt=longest,menu
 
 "-- vim-grammarous
@@ -392,5 +301,9 @@ let g:DiffUnit = 'Word3'
 au BufEnter *
 	\ hi RedundantSpace ctermbg=red ctermfg=red
 	\|match RedundantSpace /\s\+$/
+
+if has("nvim")
+	lua require('init')
+endif
 
 " vim:set noet ts=4 sts=4 sw=4:

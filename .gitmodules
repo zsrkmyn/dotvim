@@ -48,3 +48,21 @@
 [submodule "pack/llvm/start/llvm.vim"]
 	path = pack/llvm/start/llvm.vim
 	url = https://github.com/llvm/llvm.vim
+[submodule "pack/completion/start/cmp-buffer"]
+	path = pack/completion/start/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer
+[submodule "pack/completion/start/cmp-path"]
+	path = pack/completion/start/cmp-path
+	url = https://github.com/hrsh7th/cmp-path
+[submodule "pack/completion/start/cmp-cmdline"]
+	path = pack/completion/start/cmp-cmdline
+	url = https://github.com/hrsh7th/cmp-cmdline
+[submodule "pack/completion/start/nvim-cmp"]
+	path = pack/completion/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+[submodule "pack/completion/start/cmp-nvim-lsp"]
+	path = pack/completion/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp
+[submodule "pack/completion/start/nvim-lspconfig"]
+	path = pack/completion/start/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig
