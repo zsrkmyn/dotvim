@@ -1,11 +1,3 @@
-[submodule "pack/completion/start/deoplete"]
-	path = pack/completion/start/deoplete
-	url = https://github.com/Shougo/deoplete.nvim
-	ignore = untracked
-[submodule "pack/completion/start/LanguageClient"]
-	path = pack/completion/start/LanguageClient
-	url = https://github.com/autozimu/LanguageClient-neovim.git
-	ignore = untracked
 [submodule "pack/misc/start/auto-pairs"]
 	path = pack/misc/start/auto-pairs
 	url = https://github.com/zsrkmyn/auto-pairs
@@ -33,10 +25,6 @@
 [submodule "pack/completion/start/echodoc"]
 	path = pack/completion/start/echodoc
 	url = https://github.com/Shougo/echodoc.vim
-	ignore = untracked
-[submodule "pack/completion/start/vim-lsp-cxx-highlight"]
-	path = pack/completion/start/vim-lsp-cxx-highlight
-	url = https://github.com/jackguo380/vim-lsp-cxx-highlight
 	ignore = untracked
 [submodule "pack/misc/start/rainbow"]
 	path = pack/misc/start/rainbow
