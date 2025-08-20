@@ -88,8 +88,8 @@ local function get_locations(method, params, opts)
   end
   for _, client in ipairs(clients) do
     local lparams = util.make_position_params(win, client.offset_encoding)
-    for _, v in ipairs(params) do
-      table.insert(lparams, v)
+    for k, v in pairs(params) do
+      lparams[k] = v
     end
     client:request(method, lparams, function(_, result)
       on_response(_, result, client)
