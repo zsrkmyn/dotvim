@@ -13,6 +13,7 @@ local doc_hl = function(ev)
   lc_pword = lc_cword
 end
 
+local ccls_root_dir
 local lspconfig = require('lspconfig')
 lspconfig.ccls.setup {
   init_options = {
@@ -23,6 +24,14 @@ lspconfig.ccls.setup {
       rainbow = 10;
     }
   },
+  root_dir = function(fname)
+    -- force assign root_dir for headers out of project root (e.g., /usr/include)
+    if not ccls_root_dir then
+      ccls_root_dir = lspconfig.util.root_pattern('compile_commands.json', '.ccls')(fname) or
+          vim.fs.dirname(vim.fs.find('.git', {path=fname, upward=true})[1])
+    end
+    return ccls_root_dir
+  end,
   on_attach = function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
     local lopts = { loclist = true }
