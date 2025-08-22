@@ -93,6 +93,24 @@ cmp.setup({
     { name = 'buffer' },
   })
 })
+cmp.event:on('complete_done', function(evt)
+  -- Make the completed_item available and trigger CompleteDone for echodoc
+  local entry = cmp.get_selected_entry()
+  if not entry then
+    return
+  end
+  local kind = entry.completion_item.kind or -1
+  -- check type defs in nvim-cmp/lua/cmp/types/lsp.lua
+  local isfunc = (kind >= 2 and kind <= 4) or kind == 24
+  if not isfunc then
+    return
+  end
+  vim.g["pum#completed_item"] = {
+    word = entry.word,
+    info = entry.completion_item.label,
+  }
+  vim.api.nvim_exec_autocmds('CompleteDone', {});
+end)
 
 -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
 -- Set configuration for specific filetype.
