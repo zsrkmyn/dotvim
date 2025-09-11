@@ -95,7 +95,7 @@ cmp.setup({
 })
 cmp.event:on('complete_done', function(evt)
   -- Make the completed_item available and trigger CompleteDone for echodoc
-  local entry = cmp.get_selected_entry()
+  local entry = evt.entry
   if not entry then
     return
   end
