@@ -13,17 +13,26 @@ local doc_hl = function(ev)
   lc_pword = lc_cword
 end
 
+local ccls_init_options = {
+  index = {
+    threads = 16;
+  },
+  highlight = {
+    rainbow = 10;
+  },
+}
+if vim.fn.has('macunix') then
+  local resourceDir = vim.fn.system('clang --print-resource-dir'):sub(0,-2)
+  local extraArgs = {'-isystem', resourceDir..'/../../../include/c++/v1'}
+  ccls_init_options['clang'] = {
+    resourceDir = resourceDir,
+    extraArgs = extraArgs,
+  }
+end
 local ccls_root_dir
 local lspconfig = require('lspconfig')
 lspconfig.ccls.setup {
-  init_options = {
-    index = {
-      threads = 16;
-    },
-    highlight = {
-      rainbow = 10;
-    }
-  },
+  init_options = ccls_init_options,
   root_dir = function(fname)
     -- force assign root_dir for headers out of project root (e.g., /usr/include)
     if not ccls_root_dir then
